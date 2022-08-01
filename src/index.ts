@@ -1,10 +1,7 @@
 require('dotenv').config({ path: __dirname+'/.env' });
-import { ResponseToolkit, Server } from '@hapi/hapi'
+import { Server } from '@hapi/hapi'
 import { initPostgresDb } from './db/conn'
 import 'colors'
-import { getRepository } from 'typeorm';
-import User from './models/User';
-import { hashSync } from 'bcrypt';
 import { auth } from "./routes/auth"
 import { guest } from "./routes/guest"
 import path = require('path');

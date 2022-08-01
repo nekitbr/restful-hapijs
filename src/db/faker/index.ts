@@ -1,5 +1,5 @@
-import { name, internet, random, lorem, br } from 'faker-br'
-import { Condition, DataSource, Repository, FindManyOptions } from 'typeorm'
+import { name, internet, random, br } from 'faker-br'
+import { DataSource, Repository } from 'typeorm'
 import User, { UserType } from '../../models/User'
 import { performance } from 'perf_hooks'
 import 'colors'

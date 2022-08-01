@@ -1,6 +1,5 @@
-import { genSaltSync, hashSync } from "bcrypt"
 import { getRepository } from "typeorm"
-import User, { UserType } from "../models/User"
+import User from "../models/User"
 
 
 export async function list(req, h, err?: Error) {

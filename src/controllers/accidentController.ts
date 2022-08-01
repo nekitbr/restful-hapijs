@@ -1,4 +1,3 @@
-import { genSaltSync, hashSync } from "bcrypt"
 import { getRepository } from "typeorm"
 import Accident from "../models/Accident"
 import User, { UserType } from "../models/User"

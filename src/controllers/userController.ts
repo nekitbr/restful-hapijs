@@ -1,5 +1,4 @@
 import { genSaltSync, hashSync } from 'bcrypt'
-import { ResponseToolkit, Request } from 'hapi'
 import { getRepository } from 'typeorm'
 import User, { UserType } from '../models/User'
 
