@@ -1,7 +1,8 @@
 # restful-hapijs
 
 1- npm install  
-2- .env properties, default:
+2- .env properties, default:  
+
     HOST=localhost
     PORT=3000
 
