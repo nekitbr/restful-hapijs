@@ -1,0 +1,56 @@
+<div class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
+	<div class="wrapper">
+		<div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+
+            <!-- error snippet -->
+            <div class="alert alert-danger">
+                <!-- <ul> -->
+                <!-- </ul> -->
+            </div>
+            <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                <div class="flex align-middle justify-between">
+                    <a href="http://localhost:3000/home">
+                        <button class="border border-black rounded bg-gray-300 bold px-2 py-1">
+                            « Voltar
+                        </button>
+                    </a>
+                    <h2>Acidentes</h2>
+                    <a href="http://localhost:3000/register-accident">
+                        <button class="rounded px-2 py-4 mb-4 bg-blue-300">
+                            Novo Acidente
+                        </button>
+                    </a>
+                </div>
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Desc</th>
+                        <th>Terceiro</th>
+                        <th>Criado por</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {{#each accidents}}
+                            <tr>
+                                <td>{{ title }}</td>
+                                <td>{{ description }}</td>
+                                <td>{{ thirdParty.firstName }} {{ thirdParty.lastName }}</td>
+                                <td>{{ createdByUser.firstName }} {{ createdByUser.lastName }}</td>
+                                <td class="flex justify-between mx-4">
+                                    <a href="#">
+                                        <button class="rounded bg-yellow-400 py-1 px-2">Edit</button>
+                                    </a>
+                                    <!-- <form action="#" method="post"> -->
+                                        <button class="rounded bg-red-500 py-1 px-2"
+                                            onclick="return confirm('Are you sure you want to delete third party ${third.name}?')">Delete</button>	
+                                    <!-- </form> -->
+                                </td>
+                            </tr>
+                        {{/each}}
+                </tbody>
+
+            </table>
+
+		</div>
+	</div>
+</div>

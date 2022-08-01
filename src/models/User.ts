@@ -1,38 +1,62 @@
-import { Post } from './Post';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { sharedProps } from './SharedProps'
-import { Accident } from './Accident';
+import Accident from './Accident';
+import File from './Files';
 
 export enum UserType {
     user = 'user',
-    admin = 'admin'
+    admin = 'admin',
+    thirdParty = 'third-party',
 }
 
 @Entity({name: 'users', schema: process.env.POSTGRES_SCHEMA})
-export class User extends sharedProps {
-    constructor(firstName: string, email: string, role?: UserType) {
+export default class User extends sharedProps {
+    constructor(firstName: string, lastName: string, email: string, cpf: string, thirdPartyRelation: Boolean, password: string, salt: string, role?: UserType) {
         super()
 
         this.firstName = firstName
+        this.lastName = lastName
         this.email = email
+        this.cpf = cpf
         this.role = role
+        this.thirdPartyRelation = thirdPartyRelation
+        this.salt = salt
+        this.password = password
     }
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
-    @Column({name: 'first_name', nullable: false })
+    @Column({nullable: false})
     firstName: string;
+
+    @Column({nullable: false})
+    lastName: string;
 
     @Column({nullable: false, unique: true})
     email: string;
 
+    @Column({nullable: false, unique: true})
+    cpf: string;
+
     @Column({default: UserType.user, enum: UserType, type: 'enum'})
     role: UserType;
 
-    @OneToMany(() => Post, (post: Post) => post.user)
-    posts: Array<Post>;
+    @Column({default: false})
+    thirdPartyRelation: Boolean;
 
-    // @OneToMany(() => Accident, (accident: Accident) => accident.user)
-    // accidents: Array<Post>;
+    @Column({nullable: true, select: false})
+    salt: string;
+
+    @Column({nullable: true, select: false})
+    password: string;
+
+    @OneToMany(() => File, (file: File) => file.user)
+    files: Array<File>;
+
+    @OneToMany(() => Accident, (accident: Accident) => accident.createdByUser)
+    createdAccidents: Array<Accident>;
+
+    @OneToMany(() => Accident, (accident: Accident) => accident.thirdParty)
+    participatedAccidents: Array<Accident>;
 }

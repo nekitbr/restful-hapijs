@@ -1,0 +1,29 @@
+<div class="wrapper">
+    <div class="login">
+        <form id="form">
+            <p class="title">Registrar acidente</p>
+            <input class="input" type="text" name="title" placeholder="Titulo" autofocus />
+
+            <i class="fa fa-user"></i>
+            <textarea class="input" type="text" name="description" placeholder="Descrição"></textarea>
+
+            <i class="fa fa-user"></i>
+            <a href="register-thirdparty">Cadastrar novo terceiro</a>
+            <select required class="input" type="text" name="thirdPartyId" placeholder="terceiro">
+                <option hidden selected disabled>Selecione...</option>
+                {{#each thirdParty}}
+                    <option value="{{this.id}}">{{this.firstName}} {{this.lastName}}</option>
+                {{/each}}
+            </select>
+
+            <i class="fa fa-user"></i>
+            <input class="input" type="text" name="vehiclePlate" placeholder="Placa do veiculo" />
+        </form>
+
+        <button onclick="submit('/register-accident')">
+            <i class="spinner"></i>
+            <span class="state">Registrar</span>
+        </button>
+    </div>
+    </p>
+</div>

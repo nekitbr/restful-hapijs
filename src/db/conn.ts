@@ -1,32 +1,27 @@
 import 'reflect-metadata'
 import { Connection, createConnection } from 'typeorm'
-import { getEntities } from '../models'
-import * as fakeData from './faker'
+import entities from '../models'
+import { fakeUsers } from './faker'
 
-export const initDb = async (): Promise<Connection> => {
-    const host: string = process.env.POSTGRES_HOST
-    const port: number = Number(process.env.POSTGRES_PORT)
-    const username: string = process.env.POSTGRES_USER
-    const password: string = process.env.POSTGRES_PASSWORD
-    const database: string = process.env.POSTGRES_DATABASE
-    const schema: string = process.env.POSTGRES_SCHEMA
-    const entities = getEntities()
+async function populateFakeData(dataSource: Connection) {
+    await fakeUsers(dataSource)
+}
 
-    const connection = await createConnection({
+export const initPostgresDb = async (): Promise<Connection> => {
+    const dataSource = await createConnection({
         type: "postgres",
-        host,
-        port,
-        username,
-        password,
-        database,
+        host: process.env.POSTGRES_HOST,
+        port: Number(process.env.POSTGRES_PORT),
+        username: process.env.POSTGRES_USER,
+        password: process.env.POSTGRES_PASSWORD,
+        database: process.env.POSTGRES_DATABASE,
+        schema: process.env.POSTGRES_SCHEMA,
+        synchronize: true,
+        logging: process.env.DB_LOGGING.toLowerCase() === 'true',
         entities,
-        synchronize: process.env.ENVIRONMENT.toLowerCase() === 'dev' ? true : false,
-        logging: false,
-        schema,
-    });
+    })
 
-    // await fakeData.fakeUsers(connection)
-    // await fakeData.fakePosts(connection)
+    // populateFakeData(dataSource)
 
-    return connection
+    return dataSource
 }

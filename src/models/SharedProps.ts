@@ -7,6 +7,6 @@ export class sharedProps {
     @UpdateDateColumn({name: 'updated_at', type: 'date', default: () => 'CURRENT_TIMESTAMP'})
     updatedAt: Date
 
-    @DeleteDateColumn({name: 'deleted_at', type: 'date'})
+    @DeleteDateColumn({name: 'deleted_at', type: 'date', select: false})
     deletedAt: Date
 }

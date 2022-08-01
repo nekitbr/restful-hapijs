@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="login">
+    <form id="form">
+      <p class="title">Sua conta:</p>
+      <input class="input" type="text" name="firstName" disabled value="{{user.firstName}}" placeholder="Primeiro Nome" autofocus/>
+
+      <i class="fa fa-user"></i>
+      <input class="input" type="text" name="lastName" disabled value="{{user.lastName}}" placeholder="Último Nome" />
+
+      <i class="fa fa-user"></i>
+      <input class="input" type="text" name="newEmail" value="{{user.email}}" placeholder="Email" />
+
+      <i class="fa fa-user"></i>
+      <input class="input" type="text" name="cpf" disabled value="{{user.cpf}}" placeholder="CPF" />
+
+      <i class="fa fa-user"></i>
+      <input class="input" type="password" name="newPassword" placeholder="Nova senha" />
+    </form>
+
+    <button onclick="submit('/user/update')">
+      <i class="spinner"></i>
+      <span class="state">Salvar</span>
+    </button>
+  </div>
+  </p>
+</div>

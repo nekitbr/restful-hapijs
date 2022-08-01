@@ -1,9 +1,9 @@
-import { User } from "./User";
+import User from "./User";
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
 import { sharedProps } from './SharedProps'
 
 @Entity({ name: 'posts', schema: process.env.POSTGRES_SCHEMA })
-export class Post extends sharedProps {
+export default class Post extends sharedProps {
     constructor(body: string, user: User ){
         super()
         this.body = body

@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <div class="login">
+        <form id="form">
+            <p class="title">Registrar terceiro</p>
+            <input class="input" type="text" name="firstName" placeholder="Primeiro Nome" autofocus />
+
+            <i class="fa fa-user"></i>
+            <input class="input" type="text" name="lastName" placeholder="Último Nome" />
+
+            <i class="fa fa-user"></i>
+            <input class="input" type="text" name="email" placeholder="Email" />
+
+            <i class="fa fa-user"></i>
+            <input class="input" type="text" name="cpf" placeholder="CPF" />
+
+            <input class="hidden" type="checkbox" name="thirdPartyRelation" checked/>
+            <input class="hidden" name="role" value="third-party">
+        </form>
+
+        <button id="save-button" onclick="submit('/register-thirdparty')">
+            <i class="spinner"></i>
+            <span class="state">Registrar</span>
+        </button>
+    </div>
+    </p>
+</div>
